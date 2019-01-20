@@ -34,9 +34,24 @@ class UserEdit extends Component {
     })
   }
 
+  onPhotoBlur(value, index) {
+    axios.put(`/users/${this.state.user.id}`, {
+        user: { photo_index: index, photo: value }
+    }).then((response) => {
+      this.setState({ user: response.data })
+    })
+  }
+
   render() {
-    const images = this.state.user.photos.map((photo) => {
-      return <img src={photo} alt=""/>
+    const images = this.state.user.photos.map((photo, index) => {
+      const i = index
+
+      return (
+        <div>
+        <input id={`user-photo-${index}`} type="text" defaultValue={photo} onBlur={(e, index) => {this.onPhotoBlur(e.target.value, i)}} />
+        <img src={photo} alt=""/>
+        </div>
+      )
     })
 
       return (
