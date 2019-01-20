@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import { Link } from "react-router-dom"
+import QuestionDropdown  from "./QuestionDropdown"
 
 class UserEdit extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      user: { photos: [] }
+      user: { photos: [] },
+      questions: []
     }
   }
 
@@ -15,6 +17,11 @@ class UserEdit extends Component {
     const user = axios.get(`/users/${this.props.match.params.id}`)
     .then(response => {
       this.setState({ user: response.data })
+    })
+
+    const questions = axios.get(`/questions/`)
+    .then(response => {
+      this.setState({ questions: response.data })
     })
   }
 
@@ -42,17 +49,40 @@ class UserEdit extends Component {
     })
   }
 
+  onQuestionChange(e, questionNumber) {
+    axios.put(`/users/${this.state.user.id}`, {
+        user: { question: e.target.value, question_number: questionNumber }
+    }).then((response) => {
+      this.setState({ user: response.data })
+    })
+  }
+
+  onAnswerChange(e, answerNumber) {
+    axios.put(`/users/${this.state.user.id}`, {
+        user: { answer: e.target.value, answer_number: answerNumber }
+    }).then((response) => {
+      this.setState({ user: response.data })
+    })
+  }
+
   render() {
     const images = this.state.user.photos.map((photo, index) => {
-      const i = index
+
+    const i = index
 
       return (
-        <div>
+        <div className="user-images">
         <input id={`user-photo-${index}`} type="text" defaultValue={photo} onBlur={(e, index) => {this.onPhotoBlur(e.target.value, i)}} />
         <img src={photo} alt=""/>
         </div>
       )
     })
+
+    const user = axios.get(`/users/${this.props.match.params.id}`)
+    .then(response => {
+      return response.user
+    })
+
 
       return (
         <div>
@@ -66,6 +96,35 @@ class UserEdit extends Component {
         <h2>
         {this.state.user.first_name} {this.state.user.last_name}
         </h2>
+
+        <div>
+          <h2>Change Questions</h2>
+
+          <h3>Question 1</h3>
+          <select className="question-1-select" onChange={(e) => {this.onQuestionChange(e, 1)}}>
+          {this.state.questions.map((question) => {
+            return <option selected={this.state.user.question_1 === question.body }>{question.body}</option>
+          })}
+          </select>
+          <input type="text" className="answer-1-input" defaultValue={this.state.user.answer_1} onBlur={(e) => this.onAnswerChange(e, 1)}/>
+
+          <h3>Question 2</h3>
+          <select className="question-2-select" onChange={(e) => {this.onQuestionChange(e, 2)}}>
+          {this.state.questions.map((question) => {
+            return <option selected={this.state.user.question_2 === question.body }>{question.body}</option>
+          })}
+          </select>
+          <input type="text" className="answer-2-input" defaultValue={this.state.user.answer_2} onBlur={(e) => this.onAnswerChange(e, 2)}/>
+
+          <h3>Question 3</h3>
+          <select className="question-3-select" onChange={(e) => {this.onQuestionChange(e, 3)}}>
+          {this.state.questions.map((question) => {
+            return <option selected={this.state.user.question_3 === question.body }>{question.body}</option>
+          })}
+          </select>
+          <input type="text" className="answer-3-input" defaultValue={this.state.user.answer_3} onBlur={(e) => this.onAnswerChange(e, 3)}/>
+
+        </div>
 
         <div>
         {images}

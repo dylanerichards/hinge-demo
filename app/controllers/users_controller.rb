@@ -28,10 +28,22 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     photo_index = params["user"]["photo_index"]
+    question = params["user"]["question"]
+    answer = params["user"]["answer"]
 
     if photo_index
       @user.photos[photo_index] = params["user"]["photo"]
       @user.save
+    end
+
+    if question
+      question_attributes = { "question_#{params["user"]["question_number"]}" => question }
+      @user.update(question_attributes)
+    end
+
+    if answer
+      answer_attributes = { "answer_#{params["user"]["answer_number"]}" => answer }
+      @user.update(answer_attributes)
     end
 
     if @user.valid?(user_params)
