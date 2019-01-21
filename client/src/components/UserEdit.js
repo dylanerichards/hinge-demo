@@ -100,29 +100,35 @@ class UserEdit extends Component {
         <div>
           <h2>Change Questions</h2>
 
-          <h3>Question 1</h3>
-          <select className="question-1-select" onChange={(e) => {this.onQuestionChange(e, 1)}}>
-          {this.state.questions.map((question) => {
-            return <option selected={this.state.user.question_1 === question.body }>{question.body}</option>
-          })}
-          </select>
-          <input type="text" className="answer-1-input" defaultValue={this.state.user.answer_1} onBlur={(e) => this.onAnswerChange(e, 1)}/>
+          <div className="question-select-and-answer">
+            <h3>{ this.state.user.question_1 || "Question 1" }</h3>
+            <select className="question-1-select" onChange={(e) => {this.onQuestionChange(e, 1)}}>
+            {this.state.questions.map((question) => {
+              return <option selected={this.state.user.question_1 === question.body }>{question.body}</option>
+            })}
+            </select>
+            <input type="text" className="answer-1-input" defaultValue={this.state.user.answer_1} onBlur={(e) => this.onAnswerChange(e, 1)}/>
+          </div>
 
-          <h3>Question 2</h3>
+          <div className="question-select-and-answer">
+            <h3>{ this.state.user.question_2 || "Question 2" }</h3>
           <select className="question-2-select" onChange={(e) => {this.onQuestionChange(e, 2)}}>
           {this.state.questions.map((question) => {
             return <option selected={this.state.user.question_2 === question.body }>{question.body}</option>
           })}
           </select>
           <input type="text" className="answer-2-input" defaultValue={this.state.user.answer_2} onBlur={(e) => this.onAnswerChange(e, 2)}/>
+          </div>
 
-          <h3>Question 3</h3>
+          <div className="question-select-and-answer">
+          <h3>{ this.state.user.question_3 || "Question 3" }</h3>
           <select className="question-3-select" onChange={(e) => {this.onQuestionChange(e, 3)}}>
           {this.state.questions.map((question) => {
             return <option selected={this.state.user.question_3 === question.body }>{question.body}</option>
           })}
           </select>
           <input type="text" className="answer-3-input" defaultValue={this.state.user.answer_3} onBlur={(e) => this.onAnswerChange(e, 3)}/>
+          </div>
 
         </div>
 
