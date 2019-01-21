@@ -3,8 +3,8 @@ User.create(
   last_name: "Richards",
   question_1: "Never have I ever",
   answer_1: "Had a chocolate chip cookie",
-  question_1: "How my mother would describe me",
-  answer_1: "Mystical",
+  question_2: "How my mother would describe me",
+  answer_2: "Mystical",
   photos: [
     "https://picsum.photos/200/300/?random",
     "https://picsum.photos/200/300/?random",
@@ -12,6 +12,19 @@ User.create(
     "https://picsum.photos/200/300/?random",
     "https://picsum.photos/200/300/?random",
     "https://picsum.photos/200/300/?random",
+  ]
+)
+
+User.create(
+  first_name: "Tyler",
+  last_name: "Francis",
+  photos: [
+    "https://picsum.photos/200/400/",
+    "https://picsum.photos/200/400/",
+    "https://picsum.photos/200/400/",
+    "https://picsum.photos/200/400/",
+    "https://picsum.photos/200/400/",
+    "https://picsum.photos/200/400/",
   ]
 )
 
