@@ -77,11 +77,6 @@ class UserEdit extends Component {
       )
     })
 
-    axios.get(`/users/${this.props.match.params.id}`)
-      .then(response => {
-        return response.user
-      })
-
       return (
         <div>
         <label htmlFor="user-first-name">First Name</label>
