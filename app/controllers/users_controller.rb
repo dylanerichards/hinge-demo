@@ -26,27 +26,30 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    @user.update(user_params)
+    # @user.update(user_params)
     photo_index = params["user"]["photo_index"]
     question = params["user"]["question"]
     answer = params["user"]["answer"]
 
     if photo_index
       @user.photos[photo_index] = params["user"]["photo"]
-      @user.save
+      # @user.save
     end
 
     if question
       question_attributes = { "question_#{params["user"]["question_number"]}" => question }
-      @user.update(question_attributes)
+      # @user.update(question_attributes)
     end
 
     if answer
       answer_attributes = { "answer_#{params["user"]["answer_number"]}" => answer }
-      @user.update(answer_attributes)
+      # @user.update(answer_attributes)
     end
 
-    if @user.valid?(user_params)
+    all_params = user_params.merge(question_attributes).merge(answer_attributes)
+
+    if @user.valid?(all_params)
+      @user.update(all_params)
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
