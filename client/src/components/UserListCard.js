@@ -13,15 +13,15 @@ class UserListCard extends Component {
       <Link to={`/users/${user.id}`} className="no-decoration inline-block">
         <div key={user.id}>
           <Card className="user-index-card">
-          <CardHeader
-          avatar={
-            <Avatar>
-            <img src={user.photos[0]} alt="" />
-            </Avatar>
+            <CardHeader
+            avatar={
+              <Avatar>
+              <img src={user.photos[0]} alt="" />
+              </Avatar>
 
-          }
-          title={`${user.first_name} ${user.last_name}`}
-          />
+            }
+            title={`${user.first_name} ${user.last_name}`}
+            />
           </Card>
         </div>
       </Link>
