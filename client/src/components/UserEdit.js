@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import QuestionSelectAndAnswer from "./QuestionSelectAndAnswer"
+import { ToastContainer, toast  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 class UserEdit extends Component {
   constructor(props) {
@@ -29,7 +32,10 @@ class UserEdit extends Component {
         user: { first_name: value }
     }).then((response) => {
       this.setState({ user: response.data })
+      toast("First name successfully updated")
     })
+
+
   }
 
   onLastNameBlur(value) {
@@ -37,6 +43,7 @@ class UserEdit extends Component {
         user: { last_name: value }
     }).then((response) => {
       this.setState({ user: response.data })
+      toast("Last name successfully updated")
     })
   }
 
@@ -45,6 +52,7 @@ class UserEdit extends Component {
         user: { photo_index: index, photo: value }
     }).then((response) => {
       this.setState({ user: response.data })
+      toast("Photo successfully updated")
     })
   }
 
@@ -61,6 +69,9 @@ class UserEdit extends Component {
         user: { answer: e.target.value, answer_number: answerNumber }
     }).then((response) => {
       this.setState({ user: response.data })
+
+      toast("Answer successfully updated")
+
     })
   }
 
@@ -79,6 +90,7 @@ class UserEdit extends Component {
 
       return (
         <div>
+        <ToastContainer autoClose={3000} />
         <label htmlFor="user-first-name">First Name</label>
         <input id="user-first-name" type="text" defaultValue={this.state.user.first_name} onBlur={(e) => {this.onFirstNameBlur(e.target.value)}} />
 
