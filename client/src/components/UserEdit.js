@@ -61,6 +61,7 @@ class UserEdit extends Component {
         user: { question: e.target.value, question_number: questionNumber }
     }).then((response) => {
       this.setState({ user: response.data })
+      toast("Question successfully updated")
     })
   }
 
