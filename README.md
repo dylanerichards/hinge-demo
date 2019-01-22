@@ -1,24 +1,16 @@
-# README
+# Hinge Lite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A React + Rails web app for viewing and editing user profiles.
 
-Things you may want to cover:
+## Live Demo
 
-* Ruby version
+Find the app live at [hinge-demo.herokuapp.com](htpp://www.hinge-demo.herokuapp.com)
 
-* System dependencies
+## Running the application locally
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone this repository and `cd` into it.
+2. Run `bundle` to install the Rails app dependencies.
+3. Run `rake db create; rake db:migrate; rake db: seed` to create, migrate, and seed the database with some initial Users and Questions.
+4. Start the Rails server on port 3001 by running `rails server -p 3001` in the project root.
+5. Open another terminal window and `cd` into the `client` directory. Then run `npm install`.
+6. After running `npm install`, run `yarn start` to start the front-end app on port 3000.
