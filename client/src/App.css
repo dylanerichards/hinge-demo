@@ -11,6 +11,15 @@
   text-decoration: none;
 }
 
+.user-index-card {
+  margin-bottom: 5px;
+  width: 50%;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
 .settings-menu-gear {
   color: black;
   font-size: 200px;
