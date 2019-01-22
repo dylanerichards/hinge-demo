@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios"
 import QuestionSelectAndAnswer from "./QuestionSelectAndAnswer"
 import { ToastContainer, toast  } from 'react-toastify';
+import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import 'react-toastify/dist/ReactToastify.css'
 
 
@@ -92,26 +94,39 @@ class UserEdit extends Component {
       return (
         <div>
         <ToastContainer autoClose={3000} />
-        <label htmlFor="user-first-name">First Name</label>
-        <input id="user-first-name" type="text" defaultValue={this.state.user.first_name} onBlur={(e) => {this.onFirstNameBlur(e.target.value)}} />
-
-        <label htmlFor="user-last-name">Last Name</label>
-        <input id="user-last-name" type="text" defaultValue={this.state.user.last_name} onBlur={(e) => {this.onLastNameBlur(e.target.value)}} />
 
         <h2>
           {this.state.user.first_name} {this.state.user.last_name}
         </h2>
 
-        <div>
-          <h2>Change Questions</h2>
+        <TextField
+        id="outlined-name"
+        label="First Name"
+        defaultValue={this.state.user.first_name}
+        onBlur={(e) => {this.onFirstNameBlur(e.target.value)}}
+        margin="normal"
+        variant="outlined"
+        key={`${Math.floor((Math.random() * 1000))}-min`}
+        />
 
+        <TextField
+        id="outlined-name"
+        label="Last Name"
+        defaultValue={this.state.user.last_name}
+        onBlur={(e) => {this.onLastNameBlur(e.target.value)}}
+        margin="normal"
+        variant="outlined"
+        key={`${Math.floor((Math.random() * 1000))}-min`}
+        />
+
+        <div>
           <QuestionSelectAndAnswer
             question={this.state.user.question_1}
             answer={this.state.user.answer_1}
             questions={this.state.questions}
             placeholder={"Question 1"}
-            onAnswerChange={(e) => this.onAnswerChange(e, 1)}
-            onQuestionChange={(e) => this.onQuestionChange(e, 1)}
+            onAnswerChange={(e, answerNumber) => this.onAnswerChange(e, 1)}
+            onQuestionChange={(e, questionNumber) => this.onQuestionChange(e, 1)}
           />
 
           <QuestionSelectAndAnswer
@@ -119,8 +134,8 @@ class UserEdit extends Component {
             answer={this.state.user.answer_2}
             questions={this.state.questions}
             placeholder={"Question 2"}
-            onQuestionChange={(e) => this.onQuestionChange(e, 2)}
-            onAnswerChange={(e) => this.onAnswerChange(e, 2)}
+            onAnswerChange={(e, answerNumber) => this.onAnswerChange(e, 2)}
+            onQuestionChange={(e, questionNumber) => this.onQuestionChange(e, 2)}
           />
 
           <QuestionSelectAndAnswer
