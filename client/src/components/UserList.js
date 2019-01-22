@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios"
-import { Link } from "react-router-dom"
 import "../App.css"
-import Card from "@material-ui/core/Card"
-import CardHeader from "@material-ui/core/CardHeader"
-import Avatar from "@material-ui/core/Avatar"
+import UserListCard from "./UserListCard"
 
 class UserList extends Component {
   constructor(props) {
@@ -18,33 +15,16 @@ class UserList extends Component {
   componentDidMount() {
     axios.get("/users")
       .then(response => { this.setState({ users: response.data }) })
-
   }
 
   render() {
-
     return(
       <div>
       <h1>All Users</h1>
 
-
       { this.state.users.map((user) => {
         return (
-          <Link to={`/users/${user.id}`} className="no-decoration">
-            <div key={user.id}>
-              <Card className="user-index-card">
-              <CardHeader
-              avatar={
-                <Avatar>
-                <img src={user.photos[0]} alt="" />
-                </Avatar>
-
-              }
-              title={`${user.first_name} ${user.last_name}`}
-              />
-              </Card>
-            </div>
-          </Link>
+          <UserListCard user={user} />
         )
       })
       }
