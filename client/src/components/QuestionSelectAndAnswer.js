@@ -14,7 +14,6 @@ class QuestionSelectAndAnswer extends Component {
       </div>
     )
   }
-
 }
 
 export default QuestionSelectAndAnswer
