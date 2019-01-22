@@ -32,7 +32,7 @@ class UserEdit extends Component {
         user: { first_name: value }
     }).then((response) => {
       this.setState({ user: response.data })
-      toast("First name successfully updated")
+      toast.success("First name successfully updated")
     })
 
 
@@ -43,7 +43,7 @@ class UserEdit extends Component {
         user: { last_name: value }
     }).then((response) => {
       this.setState({ user: response.data })
-      toast("Last name successfully updated")
+      toast.success("Last name successfully updated")
     })
   }
 
@@ -52,7 +52,7 @@ class UserEdit extends Component {
         user: { photo_index: index, photo: value }
     }).then((response) => {
       this.setState({ user: response.data })
-      toast("Photo successfully updated")
+      toast.success("Photo successfully updated")
     })
   }
 
@@ -61,7 +61,7 @@ class UserEdit extends Component {
         user: { question: e.target.value, question_number: questionNumber }
     }).then((response) => {
       this.setState({ user: response.data })
-      toast("Question successfully updated")
+      toast.success("Question successfully updated")
     })
   }
 
@@ -71,7 +71,7 @@ class UserEdit extends Component {
     }).then((response) => {
       this.setState({ user: response.data })
 
-      toast("Answer successfully updated")
+      toast.success("Answer successfully updated")
 
     })
   }
