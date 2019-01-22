@@ -5,7 +5,7 @@ class QuestionSelectAndAnswer extends Component {
     return (
       <div className="question-select-and-answer">
       <h3>{ this.props.question || this.props.placeholder }</h3>
-      <select className="question-1-select" onChange={(e) => {this.onQuestionChange(e, 1)}}>
+      <select className="question-1-select" onChange={(e) => {this.props.onQuestionChange(e, 1)}}>
       {this.props.questions.map((question, i) => {
         return <option key={i} selected={this.props.question === question.body }>{question.body}</option>
       })}

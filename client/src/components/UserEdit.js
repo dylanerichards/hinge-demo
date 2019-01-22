@@ -103,6 +103,7 @@ class UserEdit extends Component {
             questions={this.state.questions}
             placeholder={"Question 1"}
             onAnswerChange={(e) => this.onAnswerChange(e, 1)}
+            onQuestionChange={(e) => this.onQuestionChange(e, 1)}
           />
 
           <QuestionSelectAndAnswer
@@ -110,6 +111,7 @@ class UserEdit extends Component {
             answer={this.state.user.answer_2}
             questions={this.state.questions}
             placeholder={"Question 2"}
+            onQuestionChange={(e) => this.onQuestionChange(e, 2)}
             onAnswerChange={(e) => this.onAnswerChange(e, 2)}
           />
 
@@ -118,6 +120,7 @@ class UserEdit extends Component {
             answer={this.state.user.answer_3}
             questions={this.state.questions}
             placeholder={"Question 3"}
+            onQuestionChange={(e) => this.onQuestionChange(e, 3)}
             onAnswerChange={(e) => this.onAnswerChange(e, 3)}
           />
 
