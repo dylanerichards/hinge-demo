@@ -27,7 +27,6 @@ class UserListCard extends Component {
       </Link>
     )
   }
-
 }
 
 export default UserListCard

@@ -41,7 +41,7 @@ class UserProfile extends Component {
           <UserProfileQuestionAnswer question={this.state.user.question_3} answer={this.state.user.answer_3} />
 
           <div className="user-images">
-          {images}
+            {images}
           </div>
 
         </div>
