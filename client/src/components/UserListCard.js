@@ -10,7 +10,7 @@ class UserListCard extends Component {
     const { user } = this.props
 
     return (
-      <Link to={`/users/${user.id}`} className="no-decoration">
+      <Link to={`/users/${user.id}`} className="no-decoration inline-block">
         <div key={user.id}>
           <Card className="user-index-card">
           <CardHeader
