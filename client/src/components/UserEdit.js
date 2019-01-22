@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios"
+import QuestionSelectAndAnswer from "./QuestionSelectAndAnswer"
 
 class UserEdit extends Component {
   constructor(props) {
@@ -81,7 +82,6 @@ class UserEdit extends Component {
         return response.user
       })
 
-
       return (
         <div>
         <label htmlFor="user-first-name">First Name</label>
@@ -90,43 +90,37 @@ class UserEdit extends Component {
         <label htmlFor="user-last-name">Last Name</label>
         <input id="user-last-name" type="text" defaultValue={this.state.user.last_name} onBlur={(e) => {this.onLastNameBlur(e.target.value)}} />
 
-
         <h2>
-        {this.state.user.first_name} {this.state.user.last_name}
+          {this.state.user.first_name} {this.state.user.last_name}
         </h2>
 
         <div>
           <h2>Change Questions</h2>
 
-          <div className="question-select-and-answer">
-            <h3>{ this.state.user.question_1 || "Question 1" }</h3>
-            <select className="question-1-select" onChange={(e) => {this.onQuestionChange(e, 1)}}>
-            {this.state.questions.map((question, i) => {
-              return <option key={i} selected={this.state.user.question_1 === question.body }>{question.body}</option>
-            })}
-            </select>
-            <input type="text" className="answer-1-input" defaultValue={this.state.user.answer_1} onBlur={(e) => this.onAnswerChange(e, 1)}/>
-          </div>
+          <QuestionSelectAndAnswer
+            question={this.state.user.question_1}
+            answer={this.state.user.answer_1}
+            questions={this.state.questions}
+            placeholder={"Question 1"}
+            onAnswerChange={(e) => this.onAnswerChange(e, 1)}
+          />
 
-          <div className="question-select-and-answer">
-            <h3>{ this.state.user.question_2 || "Question 2" }</h3>
-          <select className="question-2-select" onChange={(e) => {this.onQuestionChange(e, 2)}}>
-          {this.state.questions.map((question, i) => {
-            return <option key={i} selected={this.state.user.question_2 === question.body }>{question.body}</option>
-          })}
-          </select>
-          <input type="text" className="answer-2-input" defaultValue={this.state.user.answer_2} onBlur={(e) => this.onAnswerChange(e, 2)}/>
-          </div>
+          <QuestionSelectAndAnswer
+            question={this.state.user.question_2}
+            answer={this.state.user.answer_2}
+            questions={this.state.questions}
+            placeholder={"Question 2"}
+            onAnswerChange={(e) => this.onAnswerChange(e, 2)}
+          />
 
-          <div className="question-select-and-answer">
-          <h3>{ this.state.user.question_3 || "Question 3" }</h3>
-          <select className="question-3-select" onChange={(e) => {this.onQuestionChange(e, 3)}}>
-          {this.state.questions.map((question, i) => {
-            return <option key={i} selected={this.state.user.question_3 === question.body }>{question.body}</option>
-          })}
-          </select>
-          <input type="text" className="answer-3-input" defaultValue={this.state.user.answer_3} onBlur={(e) => this.onAnswerChange(e, 3)}/>
-          </div>
+          <QuestionSelectAndAnswer
+            question={this.state.user.question_3}
+            answer={this.state.user.answer_3}
+            questions={this.state.questions}
+            placeholder={"Question 3"}
+            onAnswerChange={(e) => this.onAnswerChange(e, 3)}
+          />
+
 
         </div>
 
