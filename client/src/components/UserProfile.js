@@ -14,16 +14,15 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    const user = axios.get(`/users/${this.props.match.params.id}`)
+    axios.get(`/users/${this.props.match.params.id}`)
     .then(response => {
-      console.log(response);
       this.setState({ user: response.data })
     })
   }
 
   render() {
     const images = this.state.user.photos.map((photo) => {
-      return <img src={photo} alt=""/>
+      return <img key={Math.random()} src={photo} alt=""/>
     })
 
       return (
