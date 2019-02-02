@@ -4,6 +4,10 @@ const usersReducer = (state = {}, action) => {
       return {
         users: action.users
       }
+    case "GET_USER":
+      return {
+        user: action.user
+      }
 
     default: 
       return {}

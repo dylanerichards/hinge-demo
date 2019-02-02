@@ -4,31 +4,30 @@ import { Link } from "react-router-dom"
 import Icon from '@material-ui/core/Icon';
 import UserProfileQuestionAnswer from './UserProfileQuestionAnswer';
 import "../App.css"
+import { connect } from "react-redux"
+import { getUser } from "../actions/usersActions"
 
 class UserProfile extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      user: { photos: [] }
-    }
   }
 
   componentDidMount() {
-    axios.get(`/users/${this.props.match.params.id}`)
-    .then(response => {
-      this.setState({ user: response.data })
-    })
+      this.props.getUser(this.props.match.params.id)
   }
 
   render() {
-    const images = this.state.user.photos.map((photo) => {
+      if (!this.props.user) {
+          return null
+      }
+
+    const images = this.props.user.photos.map((photo) => {
       return <img key={Math.random()} src={photo} alt=""/>
     })
 
       return (
         <div>
-          <h2 className="inline">{this.state.user.first_name} {this.state.user.last_name} </h2>
+          <h2 className="inline">{this.props.user.first_name} {this.props.user.last_name} </h2>
 
           <Link to={`/users/${this.props.match.params.id}/edit`}>
             <Icon className="settings-menu-gear">edit</Icon>
@@ -36,9 +35,9 @@ class UserProfile extends Component {
 
           <h3>About Me</h3>
 
-          <UserProfileQuestionAnswer question={this.state.user.question_1} answer={this.state.user.answer_1} />
-          <UserProfileQuestionAnswer question={this.state.user.question_2} answer={this.state.user.answer_2} />
-          <UserProfileQuestionAnswer question={this.state.user.question_3} answer={this.state.user.answer_3} />
+          <UserProfileQuestionAnswer question={this.props.user.question_1} answer={this.props.user.answer_1} />
+          <UserProfileQuestionAnswer question={this.props.user.question_2} answer={this.props.user.answer_2} />
+          <UserProfileQuestionAnswer question={this.props.user.question_3} answer={this.props.user.answer_3} />
 
           <div className="user-images">
             {images}
@@ -49,4 +48,18 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile
+const mapStateToProps = (state) => {
+  return {
+    user: state.users.user
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getUser: (id) => {
+      dispatch(getUser(ownProps.match.params.id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
