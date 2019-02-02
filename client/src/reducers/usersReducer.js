@@ -1,6 +1,13 @@
-const usersReducer = (state = [], action) => {
-    console.log(action, "action")
-    return { users: action.users }
+const usersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_USERS":
+      return {
+        users: action.users
+      }
+
+    default: 
+      return {}
+  }
 }
 
 export default usersReducer

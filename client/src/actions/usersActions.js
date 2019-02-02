@@ -6,7 +6,7 @@ export const getUsers = (dispatch) => {
         axios
         .get("/users")
         .then(res => {
-          return { type: "GET_USERS", users: res.data }
+          dispatch({ type: "GET_USERS", users: res.data })
         })
     }
 }

@@ -10,38 +10,38 @@ class UserList extends Component {
   }
 
   componentDidMount() {
-      this.props.getUsers()
+    this.props.getUsers()
   }
 
   render() {
-      console.log(this.props.users)
-    return(
+    console.log(this.props.users)
+    return (
       <div>
-      <h1>All Users</h1>
+        <h1>All Users</h1>
 
-      {this.props.users.users && this.props.users.users.map((user) => {
-        return (
-          <UserListCard user={user} />
-        )
-      })
-      }
+        {this.props.users.users && this.props.users.users.map((user) => {
+          return (
+            <UserListCard user={user} />
+          )
+        })
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    }
+  return {
+    users: state.users
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getUsers: () => {
-            dispatch(getUsers())
-        }
+  return {
+    getUsers: () => {
+      dispatch(getUsers())
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList)
