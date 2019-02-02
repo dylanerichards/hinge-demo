@@ -23,6 +23,7 @@ class UserEdit extends Component {
         this.setState({ user: response.data })
       })
 
+
     axios.get(`/questions/`)
       .then(response => {
         this.setState({ questions: response.data })
