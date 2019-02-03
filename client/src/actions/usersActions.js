@@ -1,11 +1,17 @@
 import axios from "axios"
 
 export const getUsers = (dispatch) => {
-    return (dispatch) => {
-        axios.get("/users")
-            .then(res => {
-                dispatch({ type: "GET_USERS", users: res.data })
-            })
+    return (dispatch, getState) => {
+        const usersLoaded = getState().users && getState().users.users
+
+        if (usersLoaded) {
+            dispatch({ type: "GET_USERS", users: usersLoaded })
+        } else {
+            axios.get("/users")
+                .then(res => {
+                    dispatch({ type: "GET_USERS", users: res.data })
+                })
+        }
     }
 }
 
@@ -23,7 +29,7 @@ export const getUser = (id) => {
             axios.get(`/users/${id}`)
                 .then(response => {
                     dispatch({ type: "GET_USER", user: response.data })
-            })
+                })
         }
     }
 }
