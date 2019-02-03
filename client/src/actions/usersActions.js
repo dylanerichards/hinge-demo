@@ -10,10 +10,20 @@ export const getUsers = (dispatch) => {
 }
 
 export const getUser = (id) => {
-    return (dispatch) => {
-        axios.get(`/users/${id}`)
-            .then(response => {
-                dispatch({ type: "GET_USER", user: response.data })
+    return (dispatch, getState) => {
+        const usersLoaded = getState().users && getState().users.users
+
+        if (usersLoaded) {
+            const user = getState().users.users.filter(user => {
+                return user.id == id
+            })[0]
+
+            dispatch({ type: "GET_USER", user: user })
+        } else {
+            axios.get(`/users/${id}`)
+                .then(response => {
+                    dispatch({ type: "GET_USER", user: response.data })
             })
+        }
     }
 }

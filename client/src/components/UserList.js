@@ -14,14 +14,13 @@ class UserList extends Component {
   }
 
   render() {
-    console.log(this.props.users)
     return (
       <div>
         <h1>All Users</h1>
 
-        {this.props.users.users && this.props.users.users.map((user) => {
+        {this.props.users && this.props.users.map((user) => {
           return (
-            <UserListCard user={user} />
+            <UserListCard user={user} key={user.id} />
           )
         })
         }
@@ -32,11 +31,11 @@ class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users
+    users: state.users.users
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getUsers: () => {
       dispatch(getUsers())
